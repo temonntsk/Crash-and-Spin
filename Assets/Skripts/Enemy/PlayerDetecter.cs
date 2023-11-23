@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerDetecter : MonoBehaviour
 {
     public event Action<Player> PlayerFound;
+    public event Action PlayerLost;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,9 +19,8 @@ public class PlayerDetecter : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Player player))
-        {//не совсем правильно работает ()
-            player = null;
-            PlayerFound?.Invoke(player);
+        {
+            PlayerLost?.Invoke();
         }
     }
 }
