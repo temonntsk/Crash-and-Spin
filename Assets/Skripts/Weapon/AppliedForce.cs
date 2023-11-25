@@ -1,14 +1,20 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public abstract class AppliedForce : MonoBehaviour
+public class AppliedForce
 {
-    [SerializeField] private float _impactForce;
+    private float _impactForce;
 
-    protected void HitTarget(Rigidbody rigidbody)
+    public AppliedForce(float impactForce)
     {
-        var direction = rigidbody.transform.position - transform.position;
+        if (impactForce < 0)
+            impactForce = 0;
 
+        _impactForce = impactForce;
+    }
+
+    public void HitTarget(Rigidbody rigidbody,Vector3 touchingPosition)
+    {
+       var direction = rigidbody.transform.position - touchingPosition;
         rigidbody.AddForce(direction * _impactForce, ForceMode.Impulse);
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    [SerializeField] private AppliedForce _weapon;
+    [SerializeField] private RangedWeapon _weapon;
 
     public void Attack()
     {
         print("атакует");
-       // _weapon.Shoot();
+       _weapon.Shoot();
     }
 }

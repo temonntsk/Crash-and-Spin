@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
+{// TODO: сделать интерефей айдемаджебле тк и стены и противники и игрок могутразжушаться
+ // но у каждого своя реализация  так же объединить игрока и противника (получается что IDemageble присутвует в стенах + враг + игрок но враг и игрок по своему а значит их можно объединити и человека)
     [SerializeField] private float _focusDelay;
     [SerializeField] private EnemyCombat _combat;
 
@@ -35,16 +36,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-
     private void Die()
     {
         print("dead");
     }
 
-    private void OnPlayerFound(Player player)
+    private void OnPlayerFound(Transform player)
     {
-        _target = player.transform;
+        _target = player;
         _isTargetSet = true;
     }
 
@@ -62,7 +61,6 @@ public class Enemy : MonoBehaviour
 
         if (_time > _focusDelay)
         {
-
             _time = 0;
         }
     }
