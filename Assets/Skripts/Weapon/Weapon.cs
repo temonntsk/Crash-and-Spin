@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
    [SerializeField] private float _damage;
-    //доработать 
+
+    public abstract void Attack();
+
 }

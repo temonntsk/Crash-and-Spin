@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedWeapon : IShooting
+public class RangedWeapon : Weapon
 {
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private Bullet _bullet;
+    [SerializeField] private Ammunition _prefab;
+
     //тут сделать пулл патронов и при выстреле активизаровался один патрон из 5 патрон  
-    public void Shoot()
+    private void Shoot()
     {
-        
+        Instantiate(_prefab, _shootPoint.position, _shootPoint.rotation);
     }
+
+    public override void Attack() => Shoot();
 }

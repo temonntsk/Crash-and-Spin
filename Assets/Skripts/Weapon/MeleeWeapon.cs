@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : Weapon
 {
     [SerializeField] private float _force;
 
     private AppliedForce _appliedForce;
+    private bool _isAttack;
+
+    public override void Attack() => _isAttack = true;
 
     private void Awake()
     {
@@ -13,16 +16,19 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out DestructibleWall destructibleWall))
+        if (_isAttack)
         {
-            destructibleWall.Break();
-        }
+            if (other.TryGetComponent(out DestructibleWall destructibleWall))
+            {
+                destructibleWall.Break();
+            }
 
-        if (other.TryGetComponent(out BrokenWall brokenWall))
-        {
-            var rigidbody = brokenWall.GetComponent<Rigidbody>();
+            if (other.TryGetComponent(out BrokenWall brokenWall))
+            {
+                var targetBody = brokenWall.GetComponent<Rigidbody>();
 
-            _appliedForce.HitTarget(rigidbody, transform.position);
+                _appliedForce.HitTarget(targetBody, transform.position);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AppliedForce
 {
-    private float _impactForce;
+    private readonly float _impactForce;
 
     public AppliedForce(float impactForce)
     {

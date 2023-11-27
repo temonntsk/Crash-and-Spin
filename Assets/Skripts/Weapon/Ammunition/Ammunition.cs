@@ -1,20 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet :MonoBehaviour
+public abstract class Ammunition : MonoBehaviour
 {
     [SerializeField] private float _force;
-    [SerializeField] private float _speed;
 
     private AppliedForce _appliedForce;
 
     private void Awake()
     {
         _appliedForce = new AppliedForce(_force);
-    }
-
-    void Update()
-    {
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime, Space.Self);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,5 +27,4 @@ public class Bullet :MonoBehaviour
             _appliedForce.HitTarget(rigidbody, transform.position);
         }
     }
-
 }

@@ -59,8 +59,9 @@ public class Enemy : MonoBehaviour
 
         _time += Time.deltaTime;
 
-        if (_time > _focusDelay)
+       if (_time > _focusDelay)
         {
+            _combat.Attack(_target);
             _time = 0;
         }
     }
