@@ -1,15 +1,13 @@
 using UnityEngine;
-
+[RequireComponent(typeof(EnemyCombat))]
+[RequireComponent(typeof(PlayerDetecter))]
 public class Enemy : MonoBehaviour
 {// TODO: сделать интерефей айдемаджебле тк и стены и противники и игрок могутразжушаться
  // но у каждого своя реализация  так же объединить игрока и противника (получается что IDemageble присутвует в стенах + враг + игрок но враг и игрок по своему а значит их можно объединити и человека)
-    [SerializeField] private float _focusDelay;
-    [SerializeField] private EnemyCombat _combat;
 
+    private EnemyCombat _combat;
     private PlayerDetecter _detecter;
-    private Transform _target;
-    private float _time;
-    private bool _isTargetSet;
+
 
     private void Awake()
     {
@@ -28,14 +26,6 @@ public class Enemy : MonoBehaviour
         _detecter.PlayerLost -= OnPlayerLost;
     }
 
-    private void Update()
-    {
-        if (_isTargetSet)
-        { 
-            PrepareAttack();
-        }
-    }
-
     private void Die()
     {
         print("dead");
@@ -43,26 +33,11 @@ public class Enemy : MonoBehaviour
 
     private void OnPlayerFound(Transform player)
     {
-        _target = player;
-        _isTargetSet = true;
+        _combat.PrepareAttack(player);
     }
 
     private void OnPlayerLost()
     {
-        _isTargetSet = false;
-        _target = null;
-    }
-
-    private void PrepareAttack()
-    {
-        transform.LookAt(_target);
-
-        _time += Time.deltaTime;
-
-       if (_time > _focusDelay)
-        {
-            _combat.Attack(_target);
-            _time = 0;
-        }
+        _combat.ResetAttack();
     }
 }

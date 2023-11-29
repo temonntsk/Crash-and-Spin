@@ -2777,6 +2777,8 @@ GameObject:
   - component: {fileID: 1543307850}
   - component: {fileID: 1543307852}
   - component: {fileID: 1543307853}
+  - component: {fileID: 1543307855}
+  - component: {fileID: 1543307854}
   m_Layer: 0
   m_Name: EnemyShooter
   m_TagString: Untagged
@@ -2792,7 +2794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543307846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.42, y: 1.7675999, z: -2.2}
+  m_LocalPosition: {x: -2.89, y: 1.108, z: 0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2863,8 +2865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570c768b1433cea419ccc009127d9461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _focusDelay: 3
-  _combat: {fileID: 0}
 --- !u!114 &1543307853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2880,6 +2880,32 @@ MonoBehaviour:
   _damage: 0
   _shootPoint: {fileID: 1059452546}
   _prefab: {fileID: 7049222117291722180, guid: 2956d67e63aa8f5419041d7736bf5127, type: 3}
+--- !u!114 &1543307854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543307846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69a98a6233078440b74edea290c46dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1543307855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543307846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59120b11284abb2448bc54261398eedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 0}
+  _focusDelay: 0
 --- !u!4 &1553685762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3658268454584233931, guid: b7457fecdadad7e4b8b1a61dfef147e0, type: 3}

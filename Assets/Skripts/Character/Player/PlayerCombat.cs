@@ -1,6 +1,4 @@
 using Movement;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -11,6 +9,6 @@ public class PlayerCombat : MonoBehaviour
     public void Attack()
     {
         _weapon.Attack();
-        transform.Rotate(Vector3.up * Time.deltaTime * _rotationSpeed);
+        transform.Rotate(_rotationSpeed * Time.deltaTime * Vector3.up);
     }   
 }
