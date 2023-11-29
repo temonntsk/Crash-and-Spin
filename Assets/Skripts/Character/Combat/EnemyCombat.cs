@@ -15,6 +15,7 @@ public class EnemyCombat : MonoBehaviour
         {
             if (IsFocusTarget())
             {
+                print("выстрел");
                 Attack();
             }
         }
@@ -44,12 +45,14 @@ public class EnemyCombat : MonoBehaviour
 
     public void PrepareAttack(Transform player)
     {
+        print("игрок был замечен противником");
         _target = player;
         _isTargetSet = true;
     }
 
     public void ResetAttack()
     {
+        print("игрок пропал у  противника");
         _isTargetSet = false;
         _target = null;
     }

@@ -15,7 +15,10 @@ public class GrenadeWeapon : Weapon
 
     private void Awake()
     {
-        _pool.Initialize(_prefab);
+        _pool = GetComponent<AmmunitionPool>();
+
+        if (_pool != null)
+            _pool.Initialize(_prefab);
     }
 
     private void Throw()

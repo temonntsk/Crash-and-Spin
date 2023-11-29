@@ -8,12 +8,14 @@ public class RangedWeapon : Weapon
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private Bullet _prefab;
 
-    //тут сделать пулл патронов и при выстреле активизаровался один патрон из 5 патрон
     private AmmunitionPool _pool;
 
-    private void Awake()
+    private void Start()
     {
-        _pool.Initialize(_prefab);
+        _pool = GetComponent<AmmunitionPool>();
+
+        if (_pool != null)
+            _pool.Initialize(_prefab);
     }
 
     private void Shoot()
