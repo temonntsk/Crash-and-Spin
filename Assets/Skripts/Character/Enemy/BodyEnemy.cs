@@ -1,12 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BrokenWall : MonoBehaviour, IImpacted
+public class BodyEnemy : MonoBehaviour, IImpacted
 {
     private const float _force = 1f;
-
-    private AppliedForce _appliedForce;
     private Rigidbody _rigidbody;
+    private AppliedForce _appliedForce;
 
     public Rigidbody Rigidbody => _rigidbody;
 
@@ -28,7 +29,10 @@ public class BrokenWall : MonoBehaviour, IImpacted
     }
 
     public void TakeImpact()
-    { 
-        //выделение очков для прокачки игрока
+    {
+        //тут будет подсчет очков и вызов ивента что враг мертв
+        //(будет система жизни либо в самом енеми подписываться что враг мертв) 
     }
+
+
 }

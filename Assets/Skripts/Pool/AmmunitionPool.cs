@@ -7,37 +7,36 @@ public class AmmunitionPool : MonoBehaviour
     [SerializeField] private GameObject _container;
     [SerializeField] private float _capacityAmmunition;
 
-    private List<Ammunition> _pool = new List<Ammunition>();
+    private List<Ammunition> _ammunitionPool = new List<Ammunition>();//переназвать с более конректной объектов
 
-    public void SpawnAmmunition(Vector3 spawnPoint, Quaternion spawnRotation)
+    public void ActivateAmmunition(Vector3 ammunitionPoint, Quaternion ammunitionRotation)
     {
-        while (TryGetObject(out Ammunition ammunition))
+        if (TryGetObject(out Ammunition ammunition))
         {
-            SetAmmunition(ammunition, spawnPoint, spawnRotation);
+            ammunition.SetPosition(ammunitionPoint, ammunitionRotation);
+            SetAmmunition(ammunition);
         }
     }
 
-    private void SetAmmunition(Ammunition ammunition, Vector3 spawnPoint, Quaternion spawnRotation)
+    private void SetAmmunition(Ammunition ammunition)
     {
         ammunition.gameObject.SetActive(true);
-        ammunition.transform.position = spawnPoint;
-        ammunition.transform.rotation = spawnRotation;
     }
 
-    public void Initialize(Ammunition prefab)
+    public void CreateAmmunition(Ammunition prefab)
     {
         for (int i = 0; i < _capacityAmmunition; i++)
         {
             Ammunition spawned = Instantiate(prefab, _container.transform);
             spawned.gameObject.SetActive(false);
 
-            _pool.Add(spawned);
+            _ammunitionPool.Add(spawned);
         }
     }
 
     private bool TryGetObject(out Ammunition result)
     {
-        result = _pool.FirstOrDefault(p => p.gameObject.activeSelf == false);
+        result = _ammunitionPool.FirstOrDefault(p => p.gameObject.activeSelf == false);
 
         return result != null;
     }

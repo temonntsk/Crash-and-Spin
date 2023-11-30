@@ -6,10 +6,11 @@ public class Enemy : MonoBehaviour
 {
     private EnemyCombat _combat;
     private PlayerDetecter _detecter;
-
+    private BodyEnemy _bodyEnemy;
 
     private void Awake()
     {
+        _bodyEnemy = GetComponent<BodyEnemy>();
         _detecter = GetComponentInChildren<PlayerDetecter>();
         _combat = GetComponent<EnemyCombat>();
     }

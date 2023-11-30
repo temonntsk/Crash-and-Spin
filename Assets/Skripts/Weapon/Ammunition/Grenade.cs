@@ -34,6 +34,4 @@ public class Grenade : Ammunition
             Destroy(gameObject);
         }
     }
-
-
 }

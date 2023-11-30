@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleWall : MonoBehaviour,IDemageble
+public class DestructibleWall : MonoBehaviour, IImpacted
 {
     [SerializeField] private BrokenWall _brokenWall;
 
-    public void Break()
+    private Rigidbody _rigidbody;
+
+    public Rigidbody Rigidbody => _rigidbody;
+
+    private void Start()
+    {
+        _rigidbody= GetComponent<Rigidbody>();
+    }
+
+    public void TakeImpact()
     {
         Instantiate(_brokenWall, transform.position, transform.rotation);
         gameObject.SetActive(false);
-    }
-
-    public void TakeDamage()
-    {
-        throw new System.NotImplementedException();
     }
 }

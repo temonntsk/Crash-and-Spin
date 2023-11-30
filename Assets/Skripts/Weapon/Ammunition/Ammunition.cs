@@ -15,16 +15,18 @@ public abstract class Ammunition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out DestructibleWall destructibleWall))
+        if (other.TryGetComponent(out IImpacted impactedObject))
         {
-            destructibleWall.Break();
-        }
-        // TODO: пределать в один иф
-        if (other.TryGetComponent(out BrokenWall brokenWall))
-        {
-            var rigidbody = brokenWall.GetComponent<Rigidbody>();
+            impactedObject.TakeImpact();
 
-            _appliedForce.HitTarget(rigidbody, transform.position);
+            Rigidbody targetBody = impactedObject.Rigidbody;
+            _appliedForce.HitTarget(targetBody, transform.position);
         }
+    }
+
+    public void SetPosition(Vector3 spawnPoint,Quaternion spawnRotation)//назвать правильно
+    {
+        transform.position = spawnPoint;
+        transform.rotation = spawnRotation;
     }
 }

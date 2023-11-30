@@ -18,15 +18,11 @@ public class MeleeWeapon : Weapon
     {
         if (_isAttack)
         {
-            if (other.TryGetComponent(out DestructibleWall destructibleWall))
+            if (other.TryGetComponent(out IImpacted impactedObject))
             {
-                destructibleWall.Break();
-            }
+                impactedObject.TakeImpact();
 
-            if (other.TryGetComponent(out BrokenWall brokenWall))
-            {
-                var targetBody = brokenWall.GetComponent<Rigidbody>();
-
+                Rigidbody targetBody = impactedObject.Rigidbody;
                 _appliedForce.HitTarget(targetBody, transform.position);
             }
         }

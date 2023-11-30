@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AmmunitionPool))]
@@ -18,7 +16,7 @@ public class GrenadeWeapon : Weapon
         _pool = GetComponent<AmmunitionPool>();
 
         if (_pool != null)
-            _pool.Initialize(_prefab);
+            _pool.CreateAmmunition(_prefab);
     }
 
     private void Throw()
@@ -26,7 +24,7 @@ public class GrenadeWeapon : Weapon
         if (_isTakePositionTarget)
         {
             _prefab.GiveDropPoint(_positionTarget);
-            _pool.SpawnAmmunition(_shootPoint.position, _shootPoint.rotation);
+            _pool.ActivateAmmunition(_shootPoint.position, _shootPoint.rotation);
         }
     }
 

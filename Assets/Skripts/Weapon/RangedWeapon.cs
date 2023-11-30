@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AmmunitionPool))]
@@ -15,12 +13,12 @@ public class RangedWeapon : Weapon
         _pool = GetComponent<AmmunitionPool>();
 
         if (_pool != null)
-            _pool.Initialize(_prefab);
+            _pool.CreateAmmunition(_prefab);
     }
 
     private void Shoot()
     {
-        _pool.SpawnAmmunition(_shootPoint.position, _shootPoint.rotation);
+        _pool.ActivateAmmunition(_shootPoint.position, _shootPoint.rotation);
     }
 
     public override void Attack() => Shoot();
