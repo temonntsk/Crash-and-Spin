@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyEnemy : MonoBehaviour, IImpacted
+public class BodyPlayer : MonoBehaviour, IImpacted
 {
-    private const float _force = 1f;
+    [SerializeField] private PlayerHealth _health;
+
     private Rigidbody _rigidbody;
+    private const float _force = 1f;
     private AppliedForce _appliedForce;
 
     public Rigidbody Rigidbody => _rigidbody;
@@ -28,7 +31,7 @@ public class BodyEnemy : MonoBehaviour, IImpacted
 
     public void TakeImpact()
     {
-        //тут будет подсчет очков и вызов ивента что враг мертв
-        //(будет система жизни либо в самом енеми подписываться что враг мертв) 
+        //тут будет включение риджет бади или еще как то что бы работало 
+        _health.TakeDamage();
     }
 }

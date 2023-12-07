@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Ammunition : MonoBehaviour
 {
+    [SerializeField] protected float Speed;
     [SerializeField] private float _force;
 
     private AppliedForce _appliedForce;
@@ -24,7 +25,7 @@ public abstract class Ammunition : MonoBehaviour
         }
     }
 
-    public void SetPosition(Vector3 spawnPoint,Quaternion spawnRotation)//назвать правильно
+    public void SetStartDirection(Vector3 spawnPoint,Quaternion spawnRotation)
     {
         transform.position = spawnPoint;
         transform.rotation = spawnRotation;

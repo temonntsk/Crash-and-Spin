@@ -7,15 +7,19 @@ public class AmmunitionPool : MonoBehaviour
     [SerializeField] private GameObject _container;
     [SerializeField] private float _capacityAmmunition;
 
-    private List<Ammunition> _ammunitionPool = new List<Ammunition>();//переназвать с более конректной объектов
-
-    public void ActivateAmmunition(Vector3 ammunitionPoint, Quaternion ammunitionRotation)
+    private List<Ammunition> _ammunitionPool = new List<Ammunition>();
+    //сделать наследника который будет пользоваться типо будет пулл гранат и пулл патронов
+    public Ammunition GiveAmmunition(Vector3 ammunitionPoint, Quaternion ammunitionRotation)
     {
         if (TryGetObject(out Ammunition ammunition))
         {
-            ammunition.SetPosition(ammunitionPoint, ammunitionRotation);
+            ammunition.SetStartDirection(ammunitionPoint, ammunitionRotation);
             SetAmmunition(ammunition);
+
+            return ammunition;
         }
+
+        return null;
     }
 
     private void SetAmmunition(Ammunition ammunition)
@@ -24,7 +28,7 @@ public class AmmunitionPool : MonoBehaviour
     }
 
     public void CreateAmmunition(Ammunition prefab)
-    {
+    {//это будет в родителе а остольное в наследниках 
         for (int i = 0; i < _capacityAmmunition; i++)
         {
             Ammunition spawned = Instantiate(prefab, _container.transform);
@@ -40,4 +44,6 @@ public class AmmunitionPool : MonoBehaviour
 
         return result != null;
     }
+
+    //
 }

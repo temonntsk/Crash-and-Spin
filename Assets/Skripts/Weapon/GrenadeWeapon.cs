@@ -1,7 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AmmunitionPool))]
-public class GrenadeWeapon : Weapon
+public class GrenadeWeapon : Weapon//энами хенд и он не будет наследовать 
 {
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private Grenade _prefab;
@@ -23,8 +24,9 @@ public class GrenadeWeapon : Weapon
     {
         if (_isTakePositionTarget)
         {
-            _prefab.GiveDropPoint(_positionTarget);
-            _pool.ActivateAmmunition(_shootPoint.position, _shootPoint.rotation);
+            var grenade = _pool.GiveAmmunition(_shootPoint.position, _shootPoint.rotation);
+            grenade.GetComponent<Grenade>().TakeDropPoint(_positionTarget);
+           // grenade.TakeDropPoint(_positionTarget);
         }
     }
 

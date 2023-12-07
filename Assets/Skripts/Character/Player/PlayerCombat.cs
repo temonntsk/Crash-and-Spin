@@ -1,4 +1,3 @@
-using Movement;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour

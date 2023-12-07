@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeEnemyCombat : EnemyCombat
+public class GrenadeEnemyCombat : BaceCombat
 {
     [SerializeField] private float _speed;
     [SerializeField] private int _countWayPoint;
 
     private WayPointsMovement _wayPoints;
     private GrenadeWeapon _grenadeWeapon = new GrenadeWeapon();
+    private Vector3 _position;
 
     private void Awake()
     {
-        _wayPoints = new WayPointsMovement(_countWayPoint, transform.position);
-        _weapon = new GrenadeWeapon();
-        _grenadeWeapon = _weapon as GrenadeWeapon;
+        _position = transform.position;
+        _wayPoints = new WayPointsMovement(_countWayPoint, _position);
+        Weapon = new GrenadeWeapon();//это не правильно //сделать отдельным классом 
+        _grenadeWeapon = Weapon as GrenadeWeapon;
     }
 
     protected override void Attack()
     {
         if (_grenadeWeapon is GrenadeWeapon)
-            _grenadeWeapon.Aim(_target.position);
+            _grenadeWeapon.Aim(Target.position);
 
         base.Attack();
         ChangePosition();

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 class WayPointsMovement
 {
@@ -14,12 +13,11 @@ class WayPointsMovement
 
     private void FillPointsPosition(int countWayPoint, Vector3 EnemyPosition)
     {
+        _pointsPosition = new List<Vector3>();
+
         for (int i = 0; i < countWayPoint; i++)
         {
-            Vector3 newPosition = EnemyPosition;
-
-            newPosition += new Vector3(UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection),
-                 0, UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection));
+            Vector3 newPosition = EnemyPosition + new Vector3(UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection),   0, UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection));
 
             _pointsPosition.Add(newPosition);
         }

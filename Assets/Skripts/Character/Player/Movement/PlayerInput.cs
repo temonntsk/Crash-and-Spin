@@ -9,6 +9,7 @@ namespace Movement
 
         private const string Horizontal = "Horizontal";
         private const string Vertical = "Vertical";
+
         private Vector3 _moveVector;
 
         private void Update()
@@ -18,7 +19,8 @@ namespace Movement
 
         private void FixedUpdate()
         {
-            _movement.Move(_moveVector);
+            if (_movement.IsOnSlippined == false)
+                _movement.Move(_moveVector);
         }
 
         private Vector3 GettSouseDirection()

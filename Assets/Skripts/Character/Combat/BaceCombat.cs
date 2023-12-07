@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class EnemyCombat : MonoBehaviour
+public class BaceCombat : MonoBehaviour
 {
-    [SerializeField] protected Weapon _weapon;
+    //байс комбад (название подумать не тот смысл просто )
+    //  BaceCombat сделать интрефейсом 
+
+    [SerializeField] protected Weapon Weapon;
     [SerializeField] private float _focusDelay;
 
-    protected Transform _target;
+    protected Transform Target;
     private float _time;
     private bool _isTargetSet;
 
@@ -23,7 +26,7 @@ public class EnemyCombat : MonoBehaviour
 
     private bool IsFocusTarget()
     {
-        transform.LookAt(_target);
+        transform.LookAt(Target);
 
         _time += Time.deltaTime;
 
@@ -40,20 +43,20 @@ public class EnemyCombat : MonoBehaviour
 
     protected virtual void Attack()
     {
-        _weapon.Attack();
+        Weapon.Attack();
     }
 
-    public void PrepareAttack(Transform player)
+    public void SetTarget(Transform player)
     {
         print("игрок был замечен противником");
-        _target = player;
+        Target = player;
         _isTargetSet = true;
     }
 
-    public void ResetAttack()
+    public void LoseTarget()
     {
         print("игрок пропал у  противника");
         _isTargetSet = false;
-        _target = null;
+        Target = null;
     }
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyCombat))]
 [RequireComponent(typeof(PlayerDetecter))]
+[RequireComponent(typeof(BodyEnemy))]
 public class Enemy : MonoBehaviour
 {
-    private EnemyCombat _combat;
+    [SerializeField] private BaceCombat _combat;
+
     private PlayerDetecter _detecter;
     private BodyEnemy _bodyEnemy;
 
@@ -12,7 +13,6 @@ public class Enemy : MonoBehaviour
     {
         _bodyEnemy = GetComponent<BodyEnemy>();
         _detecter = GetComponentInChildren<PlayerDetecter>();
-        _combat = GetComponent<EnemyCombat>();
     }
 
     private void OnEnable()
@@ -34,11 +34,11 @@ public class Enemy : MonoBehaviour
 
     private void OnPlayerFound(Transform player)
     {
-        _combat.PrepareAttack(player);
+        _combat.SetTarget(player);
     }
 
     private void OnPlayerLost()
     {
-        _combat.ResetAttack();
+        _combat.LoseTarget();
     }
 }

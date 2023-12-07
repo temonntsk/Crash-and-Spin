@@ -18,7 +18,7 @@ public class RangedWeapon : Weapon
 
     private void Shoot()
     {
-        _pool.ActivateAmmunition(_shootPoint.position, _shootPoint.rotation);
+        _pool.GiveAmmunition(_shootPoint.position, _shootPoint.rotation);
     }
 
     public override void Attack() => Shoot();

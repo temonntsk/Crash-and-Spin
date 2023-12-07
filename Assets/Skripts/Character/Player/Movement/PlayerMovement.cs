@@ -1,19 +1,26 @@
+using System;
 using UnityEngine;
 
 namespace Movement
 {
-    [RequireComponent(typeof(Rigidbody))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, ISlippined
     {
         [SerializeField] private float _speed;
 
-        private Rigidbody _player;
+        private Vector3 _directionIceSurface;
 
         public bool IsMoved { get; private set; }
+        public bool IsOnSlippined { get; set; }
 
-        private void Awake()
+        public Vector3 FirstPosition => transform.position;
+        public Vector3 SecondPosition => transform.position;
+
+        private void Update()
         {
-            _player = GetComponent<Rigidbody>();
+            if (IsOnSlippined)
+            {
+              Move(_directionIceSurface);
+            }
         }
 
         public void Move(Vector3 direction)
@@ -21,12 +28,17 @@ namespace Movement
             if (direction.magnitude > 0)
             {
                 IsMoved = true;
-                transform.Translate(direction * Time.deltaTime * _speed,Space.World);
+                transform.Translate(_speed * Time.deltaTime * direction, Space.World);
             }
             else
             {
                 IsMoved = false;
             }
+        }
+
+        public void TakeSlippinedDirection(Vector3 slippinedDirection)
+        {
+            _directionIceSurface = slippinedDirection;
         }
     }
 }

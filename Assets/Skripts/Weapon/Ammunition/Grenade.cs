@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class Grenade : Ammunition
 {
-    [SerializeField] private float _speed;
     [SerializeField] private float _height;
 
     private Vector3 _dropPoint;
@@ -17,7 +16,7 @@ public class Grenade : Ammunition
         TangentialFlight();
     }
 
-    public void GiveDropPoint(Vector3 dropPoint)
+    public void TakeDropPoint(Vector3 dropPoint)
     {
         _dropPoint = dropPoint;
         _midpoint = (_dropPoint - transform.position) / 2;

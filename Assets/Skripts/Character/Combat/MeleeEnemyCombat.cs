@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeleeEnemyCombat : EnemyCombat
+public class MeleeEnemyCombat : BaceCombat
 {
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _speedApproach;
@@ -13,7 +13,7 @@ public class MeleeEnemyCombat : EnemyCombat
 
     private void MoveToTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target.position, _speedApproach * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, Target.position, _speedApproach * Time.deltaTime);
         transform.Rotate(_rotationSpeed * Time.deltaTime * Vector3.up);
     }
 }
