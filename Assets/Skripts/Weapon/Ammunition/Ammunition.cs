@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Ammunition : MonoBehaviour
@@ -25,7 +23,7 @@ public abstract class Ammunition : MonoBehaviour
         }
     }
 
-    public void SetStartDirection(Vector3 spawnPoint,Quaternion spawnRotation)
+    public void SetStartDirection(Vector3 spawnPoint, Quaternion spawnRotation)
     {
         transform.position = spawnPoint;
         transform.rotation = spawnRotation;

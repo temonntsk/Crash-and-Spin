@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     public bool IsDead => _health <= _minHealth;
 
-    public Action GameOver;
+    public event Action GameOver;
 
     private void Start()
     {

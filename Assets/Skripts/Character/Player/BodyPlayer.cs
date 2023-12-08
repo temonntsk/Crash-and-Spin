@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyPlayer : MonoBehaviour, IImpacted
+public class BodyPlayer : MonoBehaviour, IImpacted, IFalling
 {
     [SerializeField] private PlayerHealth _health;
 
@@ -33,5 +33,13 @@ public class BodyPlayer : MonoBehaviour, IImpacted
     {
         //тут будет включение риджет бади или еще как то что бы работало 
         _health.TakeDamage();
+    }
+
+    public void Fall()
+    {
+        while (_health.IsDead == false)
+        {
+            _health.TakeDamage();
+        }
     }
 }

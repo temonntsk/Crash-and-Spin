@@ -1,14 +1,20 @@
 using UnityEngine;
 
-public class MeleeEnemyCombat : BaceCombat
+public class MeleeEnemyCombat : BaseCombat
 {
+    [SerializeField] private MeleeWeapon _weapon;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _speedApproach;
-    
-    protected override void Attack()
+
+    private void Update()
     {
-        base.Attack();
-        MoveToTarget();
+        Focalization.Update();
+
+        if (Focalization.TryAttack)
+        {
+            _weapon.Attack();
+            MoveToTarget();
+        }
     }
 
     private void MoveToTarget()

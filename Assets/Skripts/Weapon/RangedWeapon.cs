@@ -1,25 +1,23 @@
 using UnityEngine;
 
-[RequireComponent(typeof(AmmunitionPool))]
-public class RangedWeapon : Weapon
+[RequireComponent(typeof(BulletPool))]
+public class RangedWeapon : MonoBehaviour
 {
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private Bullet _prefab;
 
-    private AmmunitionPool _pool;
+    private BulletPool _pool;
 
     private void Start()
     {
-        _pool = GetComponent<AmmunitionPool>();
+        _pool = GetComponent<BulletPool>();
 
         if (_pool != null)
-            _pool.CreateAmmunition(_prefab);
+            _pool.CreateBullet(_prefab);
     }
 
-    private void Shoot()
+    public void Shoot()
     {
-        _pool.GiveAmmunition(_shootPoint.position, _shootPoint.rotation);
+        _pool.ActiveBullet(_shootPoint.position, _shootPoint.rotation);
     }
-
-    public override void Attack() => Shoot();
 }

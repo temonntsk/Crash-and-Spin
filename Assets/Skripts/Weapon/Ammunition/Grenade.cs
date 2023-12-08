@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Grenade : Ammunition
 {
@@ -26,11 +22,11 @@ public class Grenade : Ammunition
     {
         // transform.Translate(Vector3.forward * _speed * Time.deltaTime);
         transform.RotateAround(_dropPoint, _midpoint, _height * Time.deltaTime);
-         
 
-        if(_dropPoint == transform.position) 
-        { 
-            Destroy(gameObject);
+
+        if (_dropPoint == transform.position)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
