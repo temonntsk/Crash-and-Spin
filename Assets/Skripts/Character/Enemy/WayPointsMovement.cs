@@ -17,7 +17,7 @@ class WayPointsMovement
 
         for (int i = 0; i < countWayPoint; i++)
         {
-            Vector3 newPosition = EnemyPosition + new Vector3(UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection),   0, UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection));
+            Vector3 newPosition = EnemyPosition + new Vector3(UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection), 0, UnityEngine.Random.Range(_minNumberDirection, _maxNumberDirection));
 
             _pointsPosition.Add(newPosition);
         }

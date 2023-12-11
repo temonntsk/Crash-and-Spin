@@ -5,8 +5,8 @@ public class BaseCombat : MonoBehaviour
     [SerializeField] private float _focusDelay;
 
     protected Focalization Focalization;
-    private PlayerDetecter _detecter;
     protected Transform Target;
+    private PlayerDetecter _detecter;
 
     protected virtual void Awake()
     {
@@ -34,6 +34,7 @@ public class BaseCombat : MonoBehaviour
 
     private void OnPlayerLost()
     {
+        Target = null;
         Focalization.LoseTarget();
     }
 }

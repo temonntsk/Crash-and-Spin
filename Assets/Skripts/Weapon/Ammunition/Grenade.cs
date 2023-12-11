@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Grenade : Ammunition
 {
-    private const float MaxPathPercentage = 1f; 
+    private const float MinDistanceToTarget = 0.05f;
 
     [SerializeField] private float _flightHeight;
 
@@ -39,22 +39,21 @@ public class Grenade : Ammunition
         if (_dropPoint != null)
         {
             FlightÑalculation();
-          
             Fly();
-        }
-
-        if (_pathPercentage >= MaxPathPercentage)
-        {
-            gameObject.SetActive(false);
         }
     }
 
     private void Fly()
     {
-        Vector3 tangent = (_dropPoint - transform.position).normalized;
-        Vector3 newPosition = transform.position + (tangent * _currentDistance) + (Vector3.up * _currentHeight);
+        Vector3 tangent = _dropPoint - transform.position;
+        Vector3 newPosition = transform.position + (tangent.normalized * _currentDistance) + (Vector3.up * _currentHeight);
 
         transform.position = Vector3.MoveTowards(transform.position, newPosition, Time.deltaTime * Speed);
+
+        if (tangent.magnitude <= MinDistanceToTarget)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void FlightÑalculation()
