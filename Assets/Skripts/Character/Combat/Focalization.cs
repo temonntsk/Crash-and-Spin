@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Focalization 
+public class Focalization
 {
     private float _focusDelay;
     private float _time;
-    private  Transform _target;
-    private  Transform _enemy;
+    private Transform _target;
+    private Transform _enemy;
 
-    public bool TryAttack {  get; private set; }
+    public bool TryAttack { get; private set; }
 
-    public Focalization(float focusDelay,Transform enemy)
+    public Focalization(float focusDelay, Transform enemy)
     {
         _focusDelay = focusDelay;
         _enemy = enemy;
@@ -20,10 +20,11 @@ public class Focalization
         if (IsFocusTarget())
         {
             TryAttack = true;
-            Debug.Log("выстрел");
         }
-
-        TryAttack = false;
+        else
+        {
+            TryAttack = false;
+        }
     }
 
     private bool IsFocusTarget()

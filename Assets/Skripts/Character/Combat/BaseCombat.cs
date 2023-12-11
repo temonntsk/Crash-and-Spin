@@ -28,9 +28,8 @@ public class BaseCombat : MonoBehaviour
 
     private void OnPlayerFound(Transform player)
     {
-        Focalization.SetTarget(Target);
         Target = player;
-
+        Focalization.SetTarget(Target);
     }
 
     private void OnPlayerLost()

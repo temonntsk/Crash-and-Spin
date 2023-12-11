@@ -19,6 +19,8 @@ public class EnenyHand : MonoBehaviour
     public void Throw(Vector3 positionTarget)
     {
         var grenade = _pool.GiveGrenade(_shootPoint.position, _shootPoint.rotation);
-        grenade.TakeDropPoint(positionTarget);
+
+        if (grenade != null)
+            grenade.TakeDropPoint(positionTarget);
     }
 }

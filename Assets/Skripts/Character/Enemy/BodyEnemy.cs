@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyEnemy : MonoBehaviour, IImpacted
+public class BodyEnemy : MonoBehaviour, IImpacted,IFalling
 {
     private const float _force = 1f;
     private Rigidbody _rigidbody;
@@ -30,5 +30,10 @@ public class BodyEnemy : MonoBehaviour, IImpacted
     {
         //тут будет подсчет очков и вызов ивента что враг мертв
         //(будет система жизни либо в самом енеми подписываться что враг мертв) 
+    }
+
+    public void Fall()
+    {
+        //пока не реализовано 
     }
 }

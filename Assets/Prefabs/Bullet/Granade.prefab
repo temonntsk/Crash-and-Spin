@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dbf57fc99589c4caa998b8991b86bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 2
   _force: 15
-  _height: 2
+  _flightHeight: 3
