@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BodyEnemy : MonoBehaviour, IImpacted,IFalling
 {
+    [SerializeField] private EnemyHealth _health;
+
     private const float _force = 1f;
     private Rigidbody _rigidbody;
     private AppliedForce _appliedForce;
@@ -28,8 +30,7 @@ public class BodyEnemy : MonoBehaviour, IImpacted,IFalling
 
     public void TakeImpact()
     {
-        //тут будет подсчет очков и вызов ивента что враг мертв
-        //(будет система жизни либо в самом енеми подписываться что враг мертв) 
+        _health.Die();
     }
 
     public void Fall()

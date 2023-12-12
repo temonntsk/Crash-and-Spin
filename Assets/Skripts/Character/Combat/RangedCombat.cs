@@ -11,6 +11,12 @@ public class RangedCombat : BaseCombat
         if (Focalization.TryAttack)
         {
             _rangedWeapon.Shoot();
+            ActiveAttack = true;
+        }
+
+        if (Target == null)
+        {
+            ActiveAttack = false;
         }
     }
 }

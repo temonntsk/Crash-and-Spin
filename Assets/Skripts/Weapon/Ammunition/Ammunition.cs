@@ -20,6 +20,8 @@ public abstract class Ammunition : MonoBehaviour
 
             Rigidbody targetBody = impactedObject.Rigidbody;
             _appliedForce.HitTarget(targetBody, transform.position);
+
+            gameObject.SetActive(false);
         }
     }
 

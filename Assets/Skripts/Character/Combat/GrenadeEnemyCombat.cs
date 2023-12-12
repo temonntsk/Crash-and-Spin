@@ -25,6 +25,12 @@ public class GrenadeEnemyCombat : BaseCombat
         {
             _hand.Throw(Target.position);
             ChangeWayPoint();
+            ActiveAttack = true;
+        }
+
+        if (Target == null)
+        {
+            ActiveAttack = false;
         }
 
         Move();
@@ -33,7 +39,9 @@ public class GrenadeEnemyCombat : BaseCombat
     private void Move()
     {
         if (transform.position != _newPoint)
+        {
             transform.position = Vector3.MoveTowards(transform.position, _newPoint, _speed * Time.deltaTime);
+        }
     }
 
     private void ChangeWayPoint()

@@ -8,6 +8,8 @@ public class BaseCombat : MonoBehaviour
     protected Transform Target;
     private PlayerDetecter _detecter;
 
+    public bool ActiveAttack { get; protected set; }
+
     protected virtual void Awake()
     {
         Focalization = new Focalization(_focusDelay, transform);
