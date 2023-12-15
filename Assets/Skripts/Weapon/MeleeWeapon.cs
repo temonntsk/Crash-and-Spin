@@ -18,7 +18,7 @@ public class MeleeWeapon : Weapon
     {
         if (_isAttack)
         {
-            if (other.TryGetComponent(out IImpacted impactedObject))
+            if (other.TryGetComponent(out IImpactedble impactedObject))
             {
                 impactedObject.TakeImpact();
 

@@ -14,7 +14,7 @@ public abstract class Ammunition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IImpacted impactedObject))
+        if (other.TryGetComponent(out IImpactedble impactedObject))
         {
             impactedObject.TakeImpact();
 

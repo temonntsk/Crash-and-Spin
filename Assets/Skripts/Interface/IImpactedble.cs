@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public interface IImpacted
+public interface IImpactedble
 {
     public Rigidbody Rigidbody { get; }
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BrokenWall : MonoBehaviour, IImpacted
+public class BrokenWall : MonoBehaviour, IImpactedble
 {
     private const float _force = 1f;
 
@@ -18,7 +18,7 @@ public class BrokenWall : MonoBehaviour, IImpacted
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out IImpacted impactedObject))
+        if (collision.gameObject.TryGetComponent(out IImpactedble impactedObject))
         {
             impactedObject.TakeImpact();
 

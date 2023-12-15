@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyEnemy : MonoBehaviour, IImpacted,IFalling
+public class BodyEnemy : MonoBehaviour, IImpactedble,IFalling,ICountble
 {
     [SerializeField] private EnemyHealth _health;
 
     private const float _force = 1f;
     private Rigidbody _rigidbody;
     private AppliedForce _appliedForce;
+
+    public event Action ObjectCounted;
 
     public Rigidbody Rigidbody => _rigidbody;
 
@@ -19,7 +22,7 @@ public class BodyEnemy : MonoBehaviour, IImpacted,IFalling
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out IImpacted impactedObject))
+        if (collision.gameObject.TryGetComponent(out IImpactedble impactedObject))
         {
             impactedObject.TakeImpact();
 
@@ -31,6 +34,7 @@ public class BodyEnemy : MonoBehaviour, IImpacted,IFalling
     public void TakeImpact()
     {
         _health.Die();
+        ObjectCounted.Invoke();
     }
 
     public void Fall()

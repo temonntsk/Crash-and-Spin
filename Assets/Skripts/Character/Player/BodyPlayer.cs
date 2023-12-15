@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.WSA;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyPlayer : MonoBehaviour, IImpacted, IFalling
+public class BodyPlayer : MonoBehaviour, IImpactedble, IFalling
 {
     [SerializeField] private PlayerHealth _health;
 
@@ -20,7 +21,7 @@ public class BodyPlayer : MonoBehaviour, IImpacted, IFalling
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out IImpacted impactedObject))
+        if (collision.gameObject.TryGetComponent(out IImpactedble impactedObject))
         {
             impactedObject.TakeImpact();
 
