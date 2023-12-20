@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class PlayerMovement : MonoBehaviour, ISlippined
+    public class PlayerMovement : MonoBehaviour, ISlippinble
     {
-        [SerializeField] private float _speed;
-
+        private float _speed;
+        private float _minSpeed;
         private Vector3 _directionIceSurface;
 
         public bool IsMoved { get; private set; }
@@ -19,8 +19,18 @@ namespace Movement
         {
             if (IsOnSlippined)
             {
-              Move(_directionIceSurface);
+                Move(_directionIceSurface);
             }
+        }
+
+        public void TakeSpeed(float speed)
+        {
+            if (speed <= _minSpeed)
+            {
+                _speed = ++_minSpeed;
+            }
+
+            _speed = speed;
         }
 
         public void Move(Vector3 direction)

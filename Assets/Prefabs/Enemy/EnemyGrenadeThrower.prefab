@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 2266167903340894776}
   - component: {fileID: 813671490183348563}
   - component: {fileID: 8261065335819607425}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyGrenadeThrower
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface ISlippined
+public interface ISlippinble
 {
     public bool IsOnSlippined { get; set; }
 

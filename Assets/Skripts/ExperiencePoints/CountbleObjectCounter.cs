@@ -16,8 +16,6 @@ public class CountbleObjectCounter : MonoBehaviour
     private int _countObjectInLevel;
     private int _countObjectCounted;
 
-    private bool _isCountEqual = false;
-
     private void OnEnable()
     {
         foreach (var countbleObject in _countbleObjects)
@@ -40,14 +38,11 @@ public class CountbleObjectCounter : MonoBehaviour
         _ñalculator = new ÑalculatorExperiencePoint();
     }
 
-    private void FixedUpdate()
-    {
-        CheckImpactedObject();
-    }
-
     private void OnObjectCounted()
     {
         _countObjectCounted++;
+
+        CheckImpactedObject();
     }
 
     private void Search()
@@ -72,16 +67,11 @@ public class CountbleObjectCounter : MonoBehaviour
         }
     }
 
-
     private void CheckImpactedObject()
     {
-        if (_isCountEqual == true)
-            return;
-
         if (_countObjectInLevel == _countObjectCounted)
         {
             _ñalculator.CalculateExperiencePoint(Time.time);
-            _isCountEqual = true;
         }
     }
 }

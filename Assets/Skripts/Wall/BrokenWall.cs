@@ -7,8 +7,11 @@ public class BrokenWall : MonoBehaviour, IImpactedble
 
     private AppliedForce _appliedForce;
     private Rigidbody _rigidbody;
+    private bool _isFirstImpact;
 
     public Rigidbody Rigidbody => _rigidbody;
+
+    public bool IsFirstImpact => _isFirstImpact;
 
     private void Start()
     {
@@ -29,6 +32,10 @@ public class BrokenWall : MonoBehaviour, IImpactedble
 
     public void TakeImpact()
     { 
+        if (_isFirstImpact)
+        {
+            _isFirstImpact = false;
+        }
         //выделение очков для прокачки игрока
     }
 }

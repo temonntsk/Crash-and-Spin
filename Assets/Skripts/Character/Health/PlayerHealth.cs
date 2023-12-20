@@ -3,28 +3,31 @@ using UnityEngine;
 
 public class PlayerHealth : CharacterHealth
 {
-    [SerializeField] private int _health;
 
-    private int _maxHealth;
-    private readonly int _minHealth = 0;
-    private readonly int _damage = 1;
+    private float _health;
+    private float _minHealth;
 
     public bool IsDead => _health <= _minHealth;
 
     public event Action GameOver;
 
-    private void Start()
+    public void TakeHealth(float health)
     {
-        _maxHealth = _health;
+        if (health <= _minHealth)
+        {
+            _health = ++_minHealth;
+        }
+
+        _health = health;
     }
 
     public void TakeDamage()
     {
-        _health = Mathf.Clamp(_health - _damage, _minHealth, _maxHealth);
+       _health--;
 
         //тут изменение сердечка
 
-        if (IsDead )
+        if (IsDead)
         {
             Die();
         }

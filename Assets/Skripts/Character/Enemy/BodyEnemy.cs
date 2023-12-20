@@ -2,17 +2,21 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyEnemy : MonoBehaviour, IImpactedble,IFalling,ICountble
+public class BodyEnemy : MonoBehaviour, IImpactedble,IFallingble,ICountble
 {
+    private const float _force = 1f;
+
     [SerializeField] private EnemyHealth _health;
 
-    private const float _force = 1f;
     private Rigidbody _rigidbody;
     private AppliedForce _appliedForce;
+    private bool _isFirstImpact = true;
 
     public event Action ObjectCounted;
 
     public Rigidbody Rigidbody => _rigidbody;
+
+    public bool IsFirstImpact => _isFirstImpact;
 
     private void Start()
     {
@@ -33,8 +37,12 @@ public class BodyEnemy : MonoBehaviour, IImpactedble,IFalling,ICountble
 
     public void TakeImpact()
     {
-        _health.Die();
-        ObjectCounted.Invoke();
+        if (_isFirstImpact)
+        {
+            _health.Die();
+            ObjectCounted.Invoke();
+            _isFirstImpact = false;
+        }
     }
 
     public void Fall()

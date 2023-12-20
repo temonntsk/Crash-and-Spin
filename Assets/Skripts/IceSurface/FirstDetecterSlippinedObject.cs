@@ -9,7 +9,7 @@ public class FirstDetecterSlippinedObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out ISlippined slippined))
+        if(other.TryGetComponent(out ISlippinble slippined))
         {
             _iceSurface.TakeFirstPosition(slippined.FirstPosition);
         }
@@ -18,7 +18,7 @@ public class FirstDetecterSlippinedObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out ISlippined slippinedObject))
+        if (other.TryGetComponent(out ISlippinble slippinedObject))
         {
             slippinedObject.IsOnSlippined = false;
         }

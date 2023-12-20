@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class PlayerMeleeWeapon : MeleeWeapon
 {
-  // тут реализовать просто увеличение форса из-за пораметров 
+    private float _minWeaponForce;
+
+    public void TakeForce(float force)
+    {
+        if (force <= _minWeaponForce)
+        {
+            Force = ++_minWeaponForce;
+        }
+
+        Force = force;
+    }
 }

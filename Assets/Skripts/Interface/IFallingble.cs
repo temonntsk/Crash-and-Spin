@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IFalling
+public interface IFallingble
 {
     void Fall();
-
 }

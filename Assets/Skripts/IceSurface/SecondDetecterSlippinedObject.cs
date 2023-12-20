@@ -9,7 +9,7 @@ public class SecondDetecterSlippinedObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ISlippined slippined))
+        if (other.TryGetComponent(out ISlippinble slippined))
         {
             slippined.IsOnSlippined = true;
             _iceSurface.TakeSecondPosition(slippined.SecondPosition);

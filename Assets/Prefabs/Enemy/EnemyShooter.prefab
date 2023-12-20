@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 438616177694827597}
   - component: {fileID: 8898603912443817496}
   - component: {fileID: 858904787661165888}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyShooter
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}

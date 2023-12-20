@@ -8,7 +8,7 @@ public class EnenyHand : MonoBehaviour
 
     private GrenadePool _pool;
 
-    private void Awake()
+    private void Start()
     {
         _pool = GetComponent<GrenadePool>();
 

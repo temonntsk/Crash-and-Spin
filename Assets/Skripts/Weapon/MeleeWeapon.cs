@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    [SerializeField] private float _force;
+    [SerializeField] protected float Force;
 
     private AppliedForce _appliedForce;
     private bool _isAttack;
 
     public override void Attack() => _isAttack = true;
 
-    private void Awake()
+    private void Start()
     {
-        _appliedForce = new AppliedForce(_force);
+        _appliedForce = new AppliedForce(Force);
     }
 
     private void OnTriggerEnter(Collider other)
