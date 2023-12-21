@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-public class RangedCombat : BaseCombat
+public class RangedEnemyCombat : BaseCombat
 {
     [SerializeField] private RangedWeapon _rangedWeapon;
+    [SerializeField] private RangedEnemyMovement _movement;
 
     private void Update()
     {

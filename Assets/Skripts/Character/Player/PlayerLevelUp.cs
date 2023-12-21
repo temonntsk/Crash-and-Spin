@@ -15,7 +15,7 @@ public class PlayerLevelUp : MonoBehaviour
 
 
     private ÑalculatorExperiencePoint _ñalculator;
-    private PlayerParameters _stats;
+    private PlayerParameter _stats;
     private int _experiencePoint;
     private Dictionary<Button, Parameter> _buttonParametersPairs;
 
@@ -23,7 +23,7 @@ public class PlayerLevelUp : MonoBehaviour
     private void Awake()
     {
         _ñalculator = new ÑalculatorExperiencePoint();
-        _stats = new PlayerParameters();
+        _stats = new PlayerParameter();
 
         _buttonParametersPairs = new Dictionary<Button, Parameter>()
         {

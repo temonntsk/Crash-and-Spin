@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 438616177694827597}
   - component: {fileID: 8898603912443817496}
   - component: {fileID: 858904787661165888}
+  - component: {fileID: 595930424532711001}
   m_Layer: 11
   m_Name: EnemyShooter
   m_TagString: Untagged
@@ -621,6 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusDelay: 3
   _rangedWeapon: {fileID: 8444542984707588923}
+  _movement: {fileID: 0}
 --- !u!114 &858904787661165888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,3 +635,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e761f13ec0def040a79b18a9e48f3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &595930424532711001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969452275232157195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf4f9d0a3caef54897fe2a6173a69ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5

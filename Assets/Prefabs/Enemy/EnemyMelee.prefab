@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd77423468080e4eaa8a36df4ca919e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 15
+  Force: 0
 --- !u!1 &442551291579532900
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 6174381473824012685}
   - component: {fileID: 7595182653231348666}
   - component: {fileID: 1862554709510407016}
+  - component: {fileID: 2045696266656823704}
   m_Layer: 11
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusDelay: 3
   _weapon: {fileID: 2077658713001921486}
-  _speedApproach: 1
+  _movement: {fileID: 2045696266656823704}
 --- !u!136 &7595182653231348666
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -262,6 +263,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e761f13ec0def040a79b18a9e48f3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2045696266656823704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442551291579532900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc7a444004597f4b801c54108893ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
 --- !u!1 &1803530544729213258
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +287,6 @@ GameObject:
   - component: {fileID: 5441456505568130450}
   - component: {fileID: 6406267433143705550}
   - component: {fileID: 86992784851782516}
-  - component: {fileID: 9033465314382288555}
   - component: {fileID: 2329639573557661896}
   - component: {fileID: 4624118958350721827}
   m_Layer: 0
@@ -350,29 +363,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9033465314382288555
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803530544729213258}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &2329639573557661896
 MonoBehaviour:
   m_ObjectHideFlags: 0

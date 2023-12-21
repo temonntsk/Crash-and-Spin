@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerParameters
+public class PlayerParameter
 {
     private const float MultiplierUpgradeParameters = 1.2f;
 
@@ -20,7 +20,7 @@ public class PlayerParameters
     //деламем на тойже игровой сцене  прокачку (канвас окно) 
 
 
-    public PlayerParameters()
+    public PlayerParameter()
     {
         if (SceneManager.GetActiveScene().name == _firstLevle)
             FillDefaultValues();

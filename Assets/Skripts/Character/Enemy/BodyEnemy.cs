@@ -47,6 +47,6 @@ public class BodyEnemy : MonoBehaviour, IImpactedble,IFallingble,ICountble
 
     public void Fall()
     {
-        //пока не реализовано 
+        _health.Die();
     }
 }

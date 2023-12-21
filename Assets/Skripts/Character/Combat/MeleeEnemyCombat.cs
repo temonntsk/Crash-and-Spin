@@ -4,7 +4,7 @@ using UnityEngine;
 public class MeleeEnemyCombat : BaseCombat
 {
     [SerializeField] private MeleeWeapon _weapon;
-    [SerializeField] private float _speedApproach;
+    [SerializeField] private MeleeEnemyMovement _movement;
 
     private void Update()
     {
@@ -18,13 +18,8 @@ public class MeleeEnemyCombat : BaseCombat
 
         if (CanMoveToTarget())
         {
-            MoveToTarget();
+            _movement.Move(Target.position);
         }
-    }
-
-    private void MoveToTarget()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, Target.position, _speedApproach * Time.deltaTime);
     }
 
     private bool CanMoveToTarget()

@@ -35,7 +35,7 @@ namespace Movement
 
         public void Move(Vector3 direction)
         {
-            if (direction.magnitude > 0)
+            if (direction.sqrMagnitude > 0)
             {
                 IsMoved = true;
                 transform.Translate(_speed * Time.deltaTime * direction, Space.World);

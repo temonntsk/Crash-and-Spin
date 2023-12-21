@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 2266167903340894776}
   - component: {fileID: 813671490183348563}
   - component: {fileID: 8261065335819607425}
+  - component: {fileID: 1506156000273079693}
   m_Layer: 11
   m_Name: EnemyGrenadeThrower
   m_TagString: Untagged
@@ -317,6 +318,7 @@ MonoBehaviour:
   _hand: {fileID: 9140153553678260799}
   _speed: 3
   _countWayPoint: 4
+  _movement: {fileID: 1506156000273079693}
 --- !u!114 &8261065335819607425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +331,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e761f13ec0def040a79b18a9e48f3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1506156000273079693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103863918431304587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5482431e8a335746ac52306b287695b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
 --- !u!1 &8248634617833899963
 GameObject:
   m_ObjectHideFlags: 0

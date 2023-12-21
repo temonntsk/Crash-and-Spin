@@ -5,10 +5,11 @@ public class GrenadeEnemyCombat : BaseCombat
     [SerializeField] private EnenyHand _hand;
     [SerializeField] private float _speed;
     [SerializeField] private int _countWayPoint;
+    [SerializeField] private GrenadeEnemyMovement _movement;
 
     private WayPointsMovement _wayPoints;
     private Vector3 _newPoint;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -33,15 +34,7 @@ public class GrenadeEnemyCombat : BaseCombat
             ActiveAttack = false;
         }
 
-        Move();
-    }
-
-    private void Move()
-    {
-        if (transform.position != _newPoint)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _newPoint, _speed * Time.deltaTime);
-        }
+        _movement.Move(_newPoint);
     }
 
     private void ChangeWayPoint()

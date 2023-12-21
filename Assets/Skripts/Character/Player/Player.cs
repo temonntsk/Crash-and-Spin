@@ -8,11 +8,11 @@ public class Player : MonoBehaviour
 
     private PlayerCombat _combat;
     private PlayerMovement _movement;
-    private PlayerParameters _stats;
+    private PlayerParameter _parameter;
 
     private void Awake()
     {
-        _stats = new PlayerParameters();
+        _parameter = new PlayerParameter();
         _movement = GetComponent<PlayerMovement>();
         _combat = GetComponentInChildren<PlayerCombat>();
         PassValueFromStat();
@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
 
     private void PassValueFromStat()
     {
-        _health.TakeHealth(_stats.MaxHealth);
-        _combat.TakeRotationSpeed(_stats.RotationSpeed);
-        _combat.TakeForceForWeapon(_stats.WeaponForce);
-        _movement.TakeSpeed(_stats.MovementSpeed);
+        _health.TakeHealth(_parameter.MaxHealth);
+        _combat.TakeRotationSpeed(_parameter.RotationSpeed);
+        _combat.TakeForceForWeapon(_parameter.WeaponForce);
+        _movement.TakeSpeed(_parameter.MovementSpeed);
     }
 }
