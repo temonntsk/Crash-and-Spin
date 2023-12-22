@@ -71,6 +71,7 @@ public class CountbleObjectCounter : MonoBehaviour
     {
         if (_countObjectInLevel == _countObjectCounted)
         {
+            //тут останавливется игра 
             _сalculator.CalculateExperiencePoint(Time.time);
         }
     }

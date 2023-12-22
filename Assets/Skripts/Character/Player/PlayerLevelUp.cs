@@ -55,6 +55,7 @@ public class PlayerLevelUp : MonoBehaviour
     private void OnExperiencePointsCalculated(int experiencePoint)
     {
         _experiencePoint = experiencePoint;
+
         //тут включается канвас с окном прокачки и кнопками 
     }
     private bool TrySpendPoints()
