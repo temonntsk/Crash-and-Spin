@@ -7,6 +7,7 @@ public class CountbleObjectCounter : MonoBehaviour
 {
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private PlayerLevelUp _playerLevelUp;
 
     private ÑalculatorExperiencePoint _ñalculator;
 
@@ -71,8 +72,8 @@ public class CountbleObjectCounter : MonoBehaviour
     {
         if (_countObjectInLevel == _countObjectCounted)
         {
-            //òóò îñòàíàâëèâåòñÿ èãğà 
             _ñalculator.CalculateExperiencePoint(Time.time);
+            _playerLevelUp.TakePoints(_ñalculator.GiveExperiencePoint());
         }
     }
 }

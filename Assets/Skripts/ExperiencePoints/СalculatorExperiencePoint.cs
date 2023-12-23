@@ -15,6 +15,10 @@ public class ÑalculatorExperiencePoint
 
         _experiencePoint =  ExperiencePointsPerLevel - lostExperiencePoints;
 
-        ExperiencePointsCalculated?.Invoke(_experiencePoint);
+    }
+
+    public  int GiveExperiencePoint()
+    {
+        return _experiencePoint;
     }
 }

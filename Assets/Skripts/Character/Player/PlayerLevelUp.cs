@@ -7,22 +7,19 @@ public class PlayerLevelUp : MonoBehaviour
 {
     private const float MultiplierUpgradePrice = 1.3f;
 
+    [SerializeField] private UpgradeMenu _upgradeMenu;
     [SerializeField] private float _upgradePrice;
     [SerializeField] private Button _upgradeMaxHealth;
     [SerializeField] private Button _upgradeWeaponForce;
     [SerializeField] private Button _upgradeMovementSpeed;
     [SerializeField] private Button _upgradeRotationSpeed;
 
-
-    private ÑalculatorExperiencePoint _ñalculator;
     private PlayerParameter _stats;
     private int _experiencePoint;
     private Dictionary<Button, Parameter> _buttonParametersPairs;
 
-
     private void Awake()
     {
-        _ñalculator = new ÑalculatorExperiencePoint();
         _stats = new PlayerParameter();
 
         _buttonParametersPairs = new Dictionary<Button, Parameter>()
@@ -36,7 +33,6 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void OnEnable()
     {
-        _ñalculator.ExperiencePointsCalculated += OnExperiencePointsCalculated;
         _upgradeMaxHealth.onClick.AddListener(OnButtonClickMaxHealth);
         _upgradeWeaponForce.onClick.AddListener(OnButtonClickWeaponForce);
         _upgradeMovementSpeed.onClick.AddListener(OnButtonClickMovementSpeed);
@@ -45,18 +41,19 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void OnDisable()
     {
-        _ñalculator.ExperiencePointsCalculated -= OnExperiencePointsCalculated;
         _upgradeMaxHealth.onClick.RemoveListener(OnButtonClickMaxHealth);
         _upgradeWeaponForce.onClick.RemoveListener(OnButtonClickWeaponForce);
         _upgradeMovementSpeed.onClick.RemoveListener(OnButtonClickMovementSpeed);
         _upgradeRotationSpeed.onClick.RemoveListener(OnButtonClickRotationSpeed);
     }
 
-    private void OnExperiencePointsCalculated(int experiencePoint)
+    public void TakePoints(int experiencePoint)
     {
-        _experiencePoint = experiencePoint;
+        if (experiencePoint < 0)
+            throw new ArgumentOutOfRangeException(nameof(experiencePoint));
 
-        //òóò âêëþ÷àåòñÿ êàíâàñ ñ îêíîì ïðîêà÷êè è êíîïêàìè 
+        _experiencePoint = experiencePoint;
+        _upgradeMenu.Open();
     }
     private bool TrySpendPoints()
     {
