@@ -43,7 +43,7 @@ public class CountbleObjectCounter : MonoBehaviour
     {
         _countObjectCounted++;
 
-        CheckImpactedObject();
+        Quantify();
     }
 
     private void Search()
@@ -61,19 +61,18 @@ public class CountbleObjectCounter : MonoBehaviour
 
             if (collider.TryGetComponent(out ICountble countbleObject))
             {
-                    _countObjectInLevel++;
+                _countObjectInLevel++;
 
                 _countbleObjects.Add(countbleObject);
             }
         }
     }
 
-    private void CheckImpactedObject()
+    private void Quantify()
     {
         if (_countObjectInLevel == _countObjectCounted)
         {
-            _ñalculator.CalculateExperiencePoint(Time.time);
-            _playerLevelUp.TakePoints(_ñalculator.GiveExperiencePoint());
+            _playerLevelUp.TakePoints(_ñalculator.CalculateExperiencePoint(Time.time));
         }
     }
 }

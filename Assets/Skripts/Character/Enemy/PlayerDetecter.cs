@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerDetecter : MonoBehaviour
 {
+    [SerializeField] private ExclamationMarkEnemy _exclamationMarkEnemy;
+
     public event Action<Transform> PlayerFound;
     public event Action PlayerLost;
 
@@ -11,6 +13,7 @@ public class PlayerDetecter : MonoBehaviour
         if (other.TryGetComponent(out Player player))
         {
             PlayerFound?.Invoke(player.transform);
+            //_exclamationMarkEnemy.ToFill();
         }
     }
 
@@ -19,6 +22,7 @@ public class PlayerDetecter : MonoBehaviour
         if (other.TryGetComponent(out Player player))
         {
             PlayerLost?.Invoke();
+           // _exclamationMarkEnemy.ToEmpty();
         }
     }
 }

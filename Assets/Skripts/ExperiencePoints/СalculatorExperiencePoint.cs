@@ -7,18 +7,12 @@ public class ÑalculatorExperiencePoint
 
     private int _experiencePoint;
 
-    public event Action<int> ExperiencePointsCalculated;
-
-    public void CalculateExperiencePoint(float completionTime)
+    public int CalculateExperiencePoint(float completionTime)
     {
-        int lostExperiencePoints = Convert.ToInt32(completionTime);
+        int lostExperiencePoints = (int)completionTime;
 
         _experiencePoint =  ExperiencePointsPerLevel - lostExperiencePoints;
 
-    }
-
-    public  int GiveExperiencePoint()
-    {
         return _experiencePoint;
     }
 }

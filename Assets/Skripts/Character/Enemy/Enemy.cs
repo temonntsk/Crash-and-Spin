@@ -9,9 +9,4 @@ public class Enemy : MonoBehaviour
     {
         _bodyEnemy = GetComponent<BodyEnemy>();
     }
-
-    private void Die()
-    {
-        print("dead");
-    }
 }
