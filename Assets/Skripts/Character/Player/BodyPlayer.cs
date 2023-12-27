@@ -1,46 +1,26 @@
 using System;
 using UnityEngine;
-using UnityEngine.WSA;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BodyPlayer : MonoBehaviour, IImpactedble, IFallingble
 {
     private const float _force = 1f;
 
-    [SerializeField] private PlayerHealth _health;
-
+    private PlayerHealth _health;
     private Rigidbody _rigidbody;
-    private AppliedForce _appliedForce;
-    private bool _isFirstImpact;
-
-    public Rigidbody Rigidbody => _rigidbody;
-
-    public bool IsFirstImpact => _isFirstImpact;
+    private bool _isFirstImpact = true;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _appliedForce = new AppliedForce(_force);
+        _health = new PlayerHealth();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out IImpactedble impactedObject))
         {
-            impactedObject.TakeImpact();
-
-            Rigidbody targetBody = impactedObject.Rigidbody;
-            _appliedForce.HitTarget(targetBody, transform.position);
-        }
-    }
-
-    public void TakeImpact()
-    {
-        if (_isFirstImpact || _health.IsDead == false)
-        {
-            //тут будет включение риджет бади или еще как то что бы работало 
-            _health.TakeDamage();
-            _isFirstImpact = false;
+            impactedObject.TakeImpact(transform.position, _force);
         }
     }
 
@@ -50,5 +30,23 @@ public class BodyPlayer : MonoBehaviour, IImpactedble, IFallingble
         {
             _health.TakeDamage();
         }
+    }
+
+    public void TakeImpact(Vector3 touchingPosition, float forceImpact)
+    {
+        if (_isFirstImpact || _health.IsDead == false)
+        {
+            //тут будет включение риджет бади или еще как то что бы работало 
+            //регдол кукла будет принимать вот этот импульс
+            ApplyImpact(touchingPosition, forceImpact);
+            _health.TakeDamage();
+            _isFirstImpact = false;
+        }
+    }
+
+    private void ApplyImpact(Vector3 touchingPosition, float forceImpact)
+    {
+        var direction = transform.position - touchingPosition;
+        _rigidbody.AddForce(direction * forceImpact, ForceMode.Impulse);
     }
 }

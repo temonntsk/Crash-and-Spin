@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Focalization
 {
-    private float _focusDelay;
+    private readonly float _focusDelay;
     private float _time;
     private Transform _target;
-    private Transform _enemy;
+    private readonly Transform _enemy;
 
     public bool TryAttack { get; private set; }
 
@@ -29,6 +29,9 @@ public class Focalization
 
     private bool IsFocusTarget()
     {
+        if (_time > 0 && _target == null)
+            _time -= Time.deltaTime;
+
         if (_target == null)
             return false;
 
@@ -38,23 +41,19 @@ public class Focalization
 
         if (_time > _focusDelay)
         {
-            _time = 0;
             return true;
         }
 
         return false;
     }
 
-
     public void SetTarget(Transform player)
     {
-        Debug.Log("игрок был замечен противником");
         _target = player;
     }
 
     public void LoseTarget()
     {
-        Debug.Log("игрок пропал у  противника");
         _target = null;
     }
 }

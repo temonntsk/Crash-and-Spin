@@ -1,32 +1,51 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class DestructibleWall : MonoBehaviour, IImpactedble, ICountble
+public class DestructibleWall : MonoBehaviour, IImpactedble, ICountble, IExplodable
 {
-    [SerializeField] private BrokenWall _brokenWall;
+    [SerializeField] private BrokenWall[] _brokenWalls;
 
-    private Rigidbody _rigidbody;
     private bool _isFirstImpact = true;
 
     public event Action ObjectCounted;
 
-    public Rigidbody Rigidbody => _rigidbody;
-
-    public bool IsFirstImpact => _isFirstImpact;
-
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>(); ;
+        foreach (var brokenWall in _brokenWalls)
+        {
+            brokenWall.gameObject.SetActive(false);
+        }
     }
 
-    public void TakeImpact()
+    public void TakeImpact(Vector3 touchingPosition, float forceImpact)
     {
         if (_isFirstImpact)
         {
-            Instantiate(_brokenWall, transform.position, transform.rotation);
-            ObjectCounted?.Invoke();
-            gameObject.SetActive(false);
+            Destruction();
             _isFirstImpact = false;
         }
+    }
+
+    public void TakeExplosion(float explosionForce, Vector3 position, float explosionRadius)
+    {
+        Destruction();
+
+        foreach (var brokenWall in _brokenWalls)
+        {
+            brokenWall.TakeExplosion(explosionForce, position, explosionRadius);
+        }
+    }
+
+    private void Destruction()
+    {
+        gameObject.SetActive(false);
+
+        foreach (var brokenWall in _brokenWalls)
+        {
+            brokenWall.gameObject.SetActive(true);
+        }
+
+        ObjectCounted?.Invoke();
     }
 }

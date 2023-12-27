@@ -2,40 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrel : MonoBehaviour
+
+public class Barrel : MonoBehaviour, IImpactedble
 {
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
     //[SerializeField] private ParticleSystem _effect;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out IImpactedble impactedObject))
-        {
-            Explode();
-        }
+    private Explosive _explosive;
 
+    private void Start()
+    {
+        _explosive = new Explosive(_explosionRadius, _explosionForce);
     }
 
-    private void Explode()
+    public void TakeImpact(Vector3 touchingPosition, float forceImpact)
     {
-        foreach (Rigidbody explosionbleObject in GetExplosionbleObjects())
-        {
-            explosionbleObject.AddExplosionForce(_explosionForce,transform.position,_explosionRadius);
-        }
+        _explosive.Explode(transform.position);
+        Destroy(gameObject);
     }
-
-    private List<Rigidbody> GetExplosionbleObjects()
-    {
-        Collider[] hits= Physics.OverlapSphere(transform.position, _explosionRadius);
-
-        List<Rigidbody> barrels = new List<Rigidbody>();
-
-        foreach (var hit in hits)
-            if(hit.attachedRigidbody != null)
-                barrels.Add(hit.attachedRigidbody);
-
-        return barrels;
-    }
-
 }

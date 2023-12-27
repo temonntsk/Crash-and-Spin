@@ -9,7 +9,7 @@ public class PlayerParameter
 {
     private const float MultiplierUpgradeParameters = 1.2f;
 
-    private string _firstlevel = "1Level";
+    private string _firstlevel = "1Level";//сделать сцен лоудер там будет конфиг 
 
     private float _maxHealth;
     private float _weaponForce;

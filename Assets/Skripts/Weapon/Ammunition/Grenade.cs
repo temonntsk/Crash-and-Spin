@@ -1,20 +1,36 @@
-using System.Net;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Grenade : Ammunition
 {
-    private const float MinDistanceToTarget = 0.05f;
+    private const float MinDistanceToTarget = 0.1f;
 
     [SerializeField] private float _flightHeight;
+    [SerializeField] private float _explosionRadius;
+    [SerializeField] private float _explosionForce;
 
     private Vector3 _dropPoint;
     private float _distance;
     private float _startTime; 
     private float _currentDistance; 
     private float _pathPercentage; 
-    private float _currentHeight; 
+    private float _currentHeight;
+    private Explosive _explosive;
+
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out IImpactedble impactedObject))
+        {
+            impactedObject.TakeImpact(transform.position, Force);
+            _explosive.Explode(transform.position);
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void Start()
+    {
+        _explosive = new Explosive(_explosionRadius, _explosionForce);
+    }
 
     private void Update()
     {
@@ -52,6 +68,7 @@ public class Grenade : Ammunition
 
         if (tangent.magnitude <= MinDistanceToTarget)
         {
+            _explosive.Explode(transform.position);
             gameObject.SetActive(false);
         }
     }

@@ -5,44 +5,44 @@ using UnityEngine;
 public class GrenadePool : MonoBehaviour
 {
     [SerializeField] private GameObject _container;
-    [SerializeField] private float _capacityAmmunition;
+    [SerializeField] private float _capacityGrenades;
 
     private List<Grenade> _grenadePool = new List<Grenade>();
 
     public void CreateGrenade(Grenade prefab)
     {
-        for (int i = 0; i < _capacityAmmunition; i++)
+        for (int i = 0; i < _capacityGrenades; i++)
         {
-            Grenade spawned = Instantiate(prefab, _container.transform);
-            spawned.gameObject.SetActive(false);
+            Grenade grenade = Instantiate(prefab, _container.transform);
+            grenade.gameObject.SetActive(false);
 
-            _grenadePool.Add(spawned);
+            _grenadePool.Add(grenade);
         }
     }
 
-    public Grenade GiveGrenade(Vector3 ammunitionPoint, Quaternion ammunitionRotation)
+    public Grenade GiveGrenade(Vector3 grenadePoint, Quaternion grenadeRotation)
     {
-        if (TryGetObject(out Grenade ammunition))
+        if (TryGetObject(out Grenade grenade))
         {
-            ammunition.SetStartDirection(ammunitionPoint, ammunitionRotation);
-            SetAmmunition(ammunition);
+            grenade.SetStartDirection(grenadePoint, grenadeRotation);
+            SetAmmunition(grenade);
 
-            return ammunition;
+            return grenade;
         }
 
         return null;
     }
 
-    private void SetAmmunition(Grenade ammunition)
+    private void SetAmmunition(Grenade grenade)
     {
-        ammunition.gameObject.SetActive(true);
+        grenade.gameObject.SetActive(true);
     }
 
-    private bool TryGetObject(out Grenade result)
+    private bool TryGetObject(out Grenade grenade)
     {
-        result = _grenadePool.FirstOrDefault(p => p.gameObject.activeSelf == false);
+        grenade = _grenadePool.FirstOrDefault(p => p.gameObject.activeSelf == false);
 
-        return result != null;
+        return grenade != null;
     }
 }
 

@@ -1,85 +1,70 @@
 using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class ExclamationMarkEnemy : MonoBehaviour
 {
-    //[SerializeField] private float _lerpDuration;
+    [SerializeField] private Camera _Camera;
 
-    //private Image _image;
-    //private float _startAmount;
-    //private float _endAmount;
+    private Coroutine _changeExclamationMark;
+    private Image _image;
 
-    //private void Awake()
-    //{
-    //    _image = GetComponent<Image>();
-    //    _image.fillAmount = 1f;
-    //    _startAmount = 0;
-    //    _endAmount = 1;
-    //}
+    private float _focusDelay;
+    private float _minFillAmount;
+    private float _maxFillAmount;
+    private float _fillSpeed;
+    private float _increase;
+    private float _decrease;
 
-    //public void ToFill()
-    //{
-    //    StartCoroutine(Filling(_startAmount, _endAmount, _lerpDuration, Fill));
-    //}
-
-    //public void ToEmpty()
-    //{
-    //    StartCoroutine(Filling(_endAmount, _startAmount, _lerpDuration, Destroy));
-    //}
-
-    //private void Destroy(float value)
-    //{
-    //    _image.fillAmount = value;
-    //    Destroy(gameObject);
-    //}
-
-    //private void Fill(float value)
-    //{
-    //    _image.fillAmount = value;
-    //}
-
-    //private IEnumerator Filling(float startValue, float endValue, float duration, Action<float> lerpigEnd)
-    //{
-    //    float elapsed = 0;
-    //    float nextValue;
-
-    //    while (elapsed < duration)
-    //    {
-    //        nextValue = Mathf.Lerp(startValue, endValue, elapsed / duration);
-    //        _image.fillAmount = nextValue;
-    //        elapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    lerpigEnd?.Invoke(endValue);
-    //}
-
-    public Image image;
-    public float animationTime = 5f;
-    public float targetFillAmount = 1f;
-
-    private void Start()
+    private void Awake()
     {
-        StartCoroutine(AnimateImageFill());
+        _image = GetComponent<Image>();
+        _image.fillAmount = 0f;
+        _minFillAmount = 0f;
+        _maxFillAmount = 1f;
+        _increase = 1f;
+        _decrease = -1f;
     }
 
-    private IEnumerator AnimateImageFill()
+    private void FixedUpdate()
     {
-        float startFillAmount = image.fillAmount;
-        float elapsedTime = 0f;
+        transform.LookAt(_Camera.transform);
+    }
 
-        while (elapsedTime < animationTime)
+    public void Initialization(float focusDelay)
+    {
+        _focusDelay = focusDelay;
+        _fillSpeed = Mathf.Abs(_maxFillAmount - _minFillAmount) / _focusDelay;
+    }
+
+    public void ToFill()
+    {
+        StopCoroutineChangeVolume();
+        _changeExclamationMark = StartCoroutine(ChangeFill(_increase));
+    }
+
+    public void ToEmpty()
+    {
+        StopCoroutineChangeVolume();
+        _changeExclamationMark = StartCoroutine(ChangeFill(_decrease));
+    }
+
+    private IEnumerator ChangeFill(float target)
+    {
+        float time = 0;
+
+        while (time < _focusDelay)
         {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / animationTime);
-
-            image.fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, t);
-
+            _image.fillAmount += target * (_fillSpeed * Time.deltaTime);
+            time += Time.deltaTime;
             yield return null;
         }
+    }
+
+    private void StopCoroutineChangeVolume()
+    {
+        if (_changeExclamationMark != null)
+            StopCoroutine(_changeExclamationMark);
     }
 }

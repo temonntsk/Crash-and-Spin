@@ -4,14 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private PlayerHealth _health;
-
+    private PlayerHealth _health;
     private PlayerCombat _combat;
     private PlayerMovement _movement;
     private PlayerParameter _parameter;
 
     private void Awake()
     {
+        _health = new PlayerHealth();
         _parameter = new PlayerParameter();
         _movement = GetComponent<PlayerMovement>();
         _combat = GetComponentInChildren<PlayerCombat>();

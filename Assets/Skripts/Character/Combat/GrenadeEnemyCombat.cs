@@ -3,7 +3,6 @@ using UnityEngine;
 public class GrenadeEnemyCombat : BaseCombat
 {
     [SerializeField] private EnenyHand _hand;
-    [SerializeField] private float _speed;
     [SerializeField] private int _countWayPoint;
     [SerializeField] private GrenadeEnemyMovement _movement;
 

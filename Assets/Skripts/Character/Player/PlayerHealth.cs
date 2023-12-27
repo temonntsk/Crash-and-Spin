@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : CharacterHealth
+public class PlayerHealth
 {
-
     private float _health;
     private float _minHealth;
 
@@ -35,7 +34,7 @@ public class PlayerHealth : CharacterHealth
 
     private void Die()
     {
-        print("Игрок умер");
+        Debug.Log("Игрок умер");
         GameOver?.Invoke();
     }
 }

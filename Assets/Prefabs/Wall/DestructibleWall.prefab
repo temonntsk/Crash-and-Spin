@@ -364,4 +364,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33ea5f862ac5614383cd5ea651847ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brokenWall: {fileID: 4424170000439937946, guid: d179379ea514f8646b37695e033c9f12, type: 3}
+  _brokenWall: {fileID: 0}

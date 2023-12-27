@@ -2,17 +2,11 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    [SerializeField] protected float Force;
+    [SerializeField] protected float Force;//решить что бы у игрока и у враза разные даные ()
 
-    private AppliedForce _appliedForce;
     private bool _isAttack;
 
     public override void Attack() => _isAttack = true;
-
-    private void Start()
-    {
-        _appliedForce = new AppliedForce(Force);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,10 +14,7 @@ public class MeleeWeapon : Weapon
         {
             if (other.TryGetComponent(out IImpactedble impactedObject))
             {
-                impactedObject.TakeImpact();
-
-                Rigidbody targetBody = impactedObject.Rigidbody;
-                _appliedForce.HitTarget(targetBody, transform.position);
+                impactedObject.TakeImpact(transform.position, Force);
             }
         }
     }

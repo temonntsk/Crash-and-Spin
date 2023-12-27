@@ -21,6 +21,7 @@ namespace Movement
         {
             if (_movement.IsOnSlippined == false)
                 _movement.Move(_moveVector);
+
         }
 
         private Vector3 GettSouseDirection()

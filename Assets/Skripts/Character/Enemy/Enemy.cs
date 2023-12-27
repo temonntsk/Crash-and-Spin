@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     private BodyEnemy _bodyEnemy;
 
-    protected void Awake()
+    private void Awake()
     {
         _bodyEnemy = GetComponent<BodyEnemy>();
     }

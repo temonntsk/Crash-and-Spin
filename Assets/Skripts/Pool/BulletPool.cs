@@ -5,13 +5,13 @@ using UnityEngine;
 public class BulletPool : MonoBehaviour
 {
     [SerializeField] private GameObject _container;
-    [SerializeField] private float _capacityAmmunition;
+    [SerializeField] private float _capacityBullets;
 
     private List<Bullet> _bulletPool = new List<Bullet>();
 
     public void CreateBullet(Bullet prefab)
     {
-        for (int i = 0; i < _capacityAmmunition; i++)
+        for (int i = 0; i < _capacityBullets; i++)
         {
             Bullet spawned = Instantiate(prefab, _container.transform);
             spawned.gameObject.SetActive(false);
@@ -20,26 +20,24 @@ public class BulletPool : MonoBehaviour
         }
     }
 
-    public void ActiveBullet(Vector3 ammunitionPoint, Quaternion ammunitionRotation)
+    public void ActiveBullet(Vector3 bulletPoint, Quaternion bulletRotation)
     {
-        if (TryGetObject(out Bullet ammunition))
+        if (TryGetObject(out Bullet bullet))
         {
-            ammunition.SetStartDirection(ammunitionPoint, ammunitionRotation);
-            SetAmmunition(ammunition);
+            bullet.SetStartDirection(bulletPoint, bulletRotation);
+            SetAmmunition(bullet);
         }
     }
 
-
-    private void SetAmmunition(Bullet ammunition)
+    private void SetAmmunition(Bullet bullet)
     {
-        ammunition.gameObject.SetActive(true);
+        bullet.gameObject.SetActive(true);
     }
 
-    private bool TryGetObject(out Bullet result)
+    private bool TryGetObject(out Bullet bullet)
     {
-        result = _bulletPool.FirstOrDefault(p => p.gameObject.activeSelf == false);
+        bullet = _bulletPool.FirstOrDefault(p => p.gameObject.activeSelf == false);
 
-        return result != null;
+        return bullet != null;
     }
 }
-

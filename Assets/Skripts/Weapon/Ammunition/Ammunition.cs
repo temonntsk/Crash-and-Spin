@@ -3,24 +3,13 @@ using UnityEngine;
 public abstract class Ammunition : MonoBehaviour
 {
     [SerializeField] protected float Speed;
-    [SerializeField] private float _force;
+    [SerializeField] protected float Force;
 
-    private AppliedForce _appliedForce;
-
-    private void Awake()
-    {
-        _appliedForce = new AppliedForce(_force);
-    }
-
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out IImpactedble impactedObject))
         {
-            impactedObject.TakeImpact();
-
-            Rigidbody targetBody = impactedObject.Rigidbody;
-            _appliedForce.HitTarget(targetBody, transform.position);
-
+            impactedObject.TakeImpact(transform.position,Force);
             gameObject.SetActive(false);
         }
     }

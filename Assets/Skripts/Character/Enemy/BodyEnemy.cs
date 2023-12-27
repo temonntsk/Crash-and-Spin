@@ -2,51 +2,58 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BodyEnemy : MonoBehaviour, IImpactedble,IFallingble,ICountble
+public class BodyEnemy : MonoBehaviour, IImpactedble, IFallingble, IExplodable,ICountble
 {
     private const float _force = 1f;
 
-    [SerializeField] private EnemyHealth _health;
-
+    private EnemyHealth _health;
     private Rigidbody _rigidbody;
-    private AppliedForce _appliedForce;
     private bool _isFirstImpact = true;
 
     public event Action ObjectCounted;
 
-    public Rigidbody Rigidbody => _rigidbody;
-
-    public bool IsFirstImpact => _isFirstImpact;
-
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _appliedForce = new AppliedForce(_force);
+        _health = new EnemyHealth();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out IImpactedble impactedObject))
         {
-            impactedObject.TakeImpact();
-
-            Rigidbody targetBody = impactedObject.Rigidbody;
-            _appliedForce.HitTarget(targetBody, transform.position);
+            impactedObject.TakeImpact(transform.position,_force);
         }
     }
 
-    public void TakeImpact()
+    public void TakeImpact(Vector3 touchingPosition, float forceImpact)
     {
-        if (_isFirstImpact)
-        {
-            _health.Die();
-            ObjectCounted.Invoke();
+
+            Die();
+            //регдольная кукула так же будет принимать ApplyImpact(Vector3 touchingPosition, float forceImpact)
             _isFirstImpact = false;
-        }
+        
     }
 
     public void Fall()
     {
-        _health.Die();
+        Die();
+    }
+
+    public void TakeExplosion(float explosionForce, Vector3 position, float explosionRadius)
+    {
+        Die();
+        _rigidbody.AddExplosionForce(explosionForce, position, explosionRadius);
+    }
+
+    private void Die()
+    {
+        if (_isFirstImpact)
+        {
+            _health.Die();//жизней и так нет как заменить регдольной кукулой 
+            ObjectCounted?.Invoke();
+            //регдольная кукула включилась
+            _isFirstImpact = false;
+        }
     }
 }
