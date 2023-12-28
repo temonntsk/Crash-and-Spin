@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4367475, g: 0.48436272, b: 0.56461364, a: 1}
+  m_IndirectSpecularColor: {r: 0.4367478, g: 0.48436308, b: 0.5646142, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1479,9 +1479,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 544928c8c0be99d4daba5e435d65dcbc, type: 2}
     - target: {fileID: -6057140222963153312, guid: 76637f03b1aef4d4ea3ee2bababad97b, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'hand.R'\n\tFrom animation clip 'Attack'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76637f03b1aef4d4ea3ee2bababad97b, type: 3}
       propertyPath: m_RootOrder
