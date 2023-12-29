@@ -5,26 +5,23 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class ExclamationMarkEnemy : MonoBehaviour
 {
+    private const float MinFillAmount = 0f;
+    private const float MaxFillAmount = 1f;
+    private const float Increase = 1f;
+    private const float Decrease = -1f;
+
     [SerializeField] private Camera _Camera;
 
     private Coroutine _changeExclamationMark;
     private Image _image;
 
     private float _focusDelay;
-    private float _minFillAmount;
-    private float _maxFillAmount;
     private float _fillSpeed;
-    private float _increase;
-    private float _decrease;
 
     private void Awake()
     {
         _image = GetComponent<Image>();
         _image.fillAmount = 0f;
-        _minFillAmount = 0f;
-        _maxFillAmount = 1f;
-        _increase = 1f;
-        _decrease = -1f;
     }
 
     private void FixedUpdate()
@@ -35,19 +32,19 @@ public class ExclamationMarkEnemy : MonoBehaviour
     public void Initialization(float focusDelay)
     {
         _focusDelay = focusDelay;
-        _fillSpeed = Mathf.Abs(_maxFillAmount - _minFillAmount) / _focusDelay;
+        _fillSpeed = Mathf.Abs(MaxFillAmount - MinFillAmount) / _focusDelay;
     }
 
     public void ToFill()
     {
         StopCoroutineChangeVolume();
-        _changeExclamationMark = StartCoroutine(ChangeFill(_increase));
+        _changeExclamationMark = StartCoroutine(ChangeFill(Increase));
     }
 
     public void ToEmpty()
     {
         StopCoroutineChangeVolume();
-        _changeExclamationMark = StartCoroutine(ChangeFill(_decrease));
+        _changeExclamationMark = StartCoroutine(ChangeFill(Decrease));
     }
 
     private IEnumerator ChangeFill(float target)
@@ -57,6 +54,7 @@ public class ExclamationMarkEnemy : MonoBehaviour
         while (time < _focusDelay)
         {
             _image.fillAmount += target * (_fillSpeed * Time.deltaTime);
+            Debug.Log(_image.fillAmount);
             time += Time.deltaTime;
             yield return null;
         }
