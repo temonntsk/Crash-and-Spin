@@ -640,6 +640,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7277938150602562764}
   - component: {fileID: 7710477084589837256}
+  - component: {fileID: 4359741212098739566}
+  - component: {fileID: 2848000242732046542}
   m_Layer: 0
   m_Name: bandit
   m_TagString: Untagged
@@ -738,6 +740,40 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000000027939677, y: 0.0030935886, z: -0.0012228277}
     m_Extent: {x: 0.013418201, y: 0.015295979, z: 0.0079076085}
   m_DirtyAABB: 0
+--- !u!95 &4359741212098739566
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528817277925074886}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2848000242732046542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528817277925074886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0abd8934433224ab229733483d3dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _combat: {fileID: 0}
 --- !u!1 &5441404203366254743
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +944,6 @@ GameObject:
   - component: {fileID: 3619085439062388733}
   - component: {fileID: 3915701226207178810}
   - component: {fileID: 2173317542217735019}
-  - component: {fileID: 6736121307298300758}
   m_Layer: 0
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -933,7 +968,7 @@ Transform:
   - {fileID: 5307240311103938855}
   - {fileID: 872692717860095033}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7203317276419068892
 Animator:
@@ -1056,19 +1091,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.8975646, z: 1}
   m_Center: {x: 0, y: 1.4741596, z: 0}
---- !u!114 &6736121307298300758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6144770607699474239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0abd8934433224ab229733483d3dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _combat: {fileID: 4206248580967931657}
 --- !u!1 &6184754052615516444
 GameObject:
   m_ObjectHideFlags: 0
